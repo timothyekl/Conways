@@ -55,8 +55,9 @@ class LifeWindow < Gosu::Window
   end
 
   def in_bounds?(x, y)
-    return x > -1 * CELL_SIZE + self.visible_offset[0] && x < self.width + CELL_SIZE + self.visible_offset[0] &&
-            y > -1 * CELL_SIZE + self.visible_offset[1] && y < self.height + CELL_SIZE + self.visible_offset[1]
+    result = x > -1 * CELL_SIZE - self.visible_offset[0] && x < self.width + CELL_SIZE - self.visible_offset[0] &&
+            y > -1 * CELL_SIZE - self.visible_offset[1] && y < self.height + CELL_SIZE - self.visible_offset[1]
+    return result
   end
 
   def draw
