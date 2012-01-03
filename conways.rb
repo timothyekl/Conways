@@ -1,4 +1,5 @@
 require 'gosu'
+require 'optparse'
 
 class LifeWindow < Gosu::Window
   CELL_SIZE = 16
@@ -157,6 +158,20 @@ class LifeWindow < Gosu::Window
   end
 end
 
-window = LifeWindow.new
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: conways.rb [options]"
 
+  opts.on("-V", "--version", "Show version info") do |v|
+    options[:version] = v
+  end
+end.parse!
+
+if options[:version]
+  puts "Conway's Game of Life, development version"
+  puts "License info at http://github.com/lithium3141/Conways"
+  Kernel.exit(0)
+end
+
+window = LifeWindow.new
 window.show
